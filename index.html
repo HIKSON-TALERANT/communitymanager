@@ -23,8 +23,8 @@
             border-radius: 5px;
             position: relative;
         }
-        header h2 {
-            margin-left: 50px;
+        header h1 {
+            margin-left:50px;
             color: #ffffff;
         }
         h2 {
@@ -106,45 +106,7 @@
         footer a:hover {
             text-decoration: underline;
         }
-        #menu-button {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        #menu-button svg {
-            width: 30px;
-            height: 30px;
-            fill: #fff;
-        }
-        #side-menu {
-            position: fixed;
-            left: -250px;
-            top: 0;
-            width: 200px;
-            height: 100%;
-            background-color: #2c3e50;
-            transition: left 0.3s ease;
-            z-index: 1000;
-        }
-        #side-menu.open {
-            left: 0;
-        }
-        #side-menu ul {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 50px;
-        }
-        #side-menu ul li {
-            padding: 10px 20px;
-        }
-        #side-menu ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
+  
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -155,29 +117,78 @@
                 margin-left: 0 !important;
             }
         }
+         /* Styles pour la barre de menu */
+         nav {
+            background-color: #2c3e50;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        #menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul.open {
+                display: flex;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            #menu-button {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="progress-bar"></div>
-    <nav id="side-menu">
-        <ul>
+    
+    <nav>
+        <button id="menu-button">☰</button>
+        <ul id="menu">
+            <li><a style="color: #3498db;" href="https://hiksont-talerant.vercel.app/">⬅️ Visiter mon portfolio</a></li>
             <li><a href="#astuce1">Astuce 1</a></li>
             <li><a href="#astuce2">Astuce 2</a></li>
             <li><a href="#astuce3">Astuce 3</a></li>
             <li><a href="#astuce4">Astuce 4</a></li>
             <li><a href="#astuce5">Astuce 5</a></li>
-            <li><a style="color: #3498db;" href="https://hiksont-talerant.vercel.app/">Visitez mon portfolio</a></li>
         </ul>
     </nav>
     <header>
-        <button id="menu-button">
-            <svg viewBox="0 0 100 80" width="40" height="40">
-                <rect width="100" height="20"></rect>
-                <rect y="30" width="100" height="20"></rect>
-                <rect y="60" width="100" height="20"></rect>
-            </svg>
-        </button>
-        <h2 >5 Astuces pour Rendre Votre CV Incontournable</h2>
+        <h1 >5 Astuces pour Rendre Votre CV Incontournable</h1>
     </header>
 
     <main>
@@ -311,16 +322,16 @@
 
         // Menu button functionality
         const menuButton = document.getElementById('menu-button');
-        const sideMenu = document.getElementById('side-menu');
+        const menu = document.getElementById('menu');
 
         menuButton.addEventListener('click', () => {
-            sideMenu.classList.toggle('open');
+            menu.classList.toggle('open');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (event) => {
-            if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
-                sideMenu.classList.remove('open');
+            if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
+                menu.classList.remove('open');
             }
         });
     </script>
