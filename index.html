@@ -21,9 +21,11 @@
             padding: 1rem;
             margin-bottom: 2rem;
             border-radius: 5px;
+            position: relative;
         }
-        h1 {
+        header h2 {
             margin: 0;
+            color: #ffffff;
         }
         h2 {
             color: #2980b9;
@@ -89,6 +91,60 @@
             transform: scale(1.05);
             opacity: 1;
         }
+        footer {
+            background-color: #00000098;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 5px;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        #menu-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        #menu-button svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+        #side-menu {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #2c3e50;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+        #side-menu.open {
+            left: 0;
+        }
+        #side-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+        #side-menu ul li {
+            padding: 10px 20px;
+        }
+        #side-menu ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -103,8 +159,25 @@
 </head>
 <body>
     <div id="progress-bar"></div>
+    <nav id="side-menu">
+        <ul>
+            <li><a href="#astuce1">Astuce 1</a></li>
+            <li><a href="#astuce2">Astuce 2</a></li>
+            <li><a href="#astuce3">Astuce 3</a></li>
+            <li><a href="#astuce4">Astuce 4</a></li>
+            <li><a href="#astuce5">Astuce 5</a></li>
+            <li><a style="color: #3498db;" href="https://hiksont-talerant.vercel.app/">Visitez mon portfolio</a></li>
+        </ul>
+    </nav>
     <header>
-        <h1>5 Astuces pour Rendre Votre CV Incontournable</h1>
+        <button id="menu-button">
+            <svg viewBox="0 0 100 80" width="40" height="40">
+                <rect width="100" height="20"></rect>
+                <rect y="30" width="100" height="20"></rect>
+                <rect y="60" width="100" height="20"></rect>
+            </svg>
+        </button>
+        <h2>5 Astuces pour Rendre Votre CV Incontournable</h2>
     </header>
 
     <main>
@@ -112,7 +185,7 @@
             <p>Dans un marché du travail toujours plus compétitif, un CV percutant est votre meilleur allié pour capter l'attention des recruteurs. Votre CV est bien plus qu'une simple liste de compétences et d'expériences : c'est votre carte de visite professionnelle. Mais comment sortir du lot ? Dans cet article, découvrez 5 astuces indispensables pour transformer votre CV en un outil irrésistible aux yeux des employeurs. <strong>Lisez jusqu'au bout pour appliquer ces conseils dès aujourd'hui et booster vos chances de décrocher l'emploi de vos rêves !</strong></p>
         </section>
 
-        <section class="astuce">
+        <section id="astuce1" class="astuce">
             <h2>Astuce 1 : Misez sur un Design Clair et Professionnel</h2>
             <img src="images/istockphoto-1409090568-612x612.jpg" width="500" alt="cv pro">
             <p>Un CV bien présenté est la première impression que vous laissez à un recruteur. Optez pour un design moderne, mais sobre, qui met en valeur vos informations sans surcharger la mise en page. Privilégiez une structure aérée avec des sections clairement délimitées : expérience, compétences, formation, etc.</p>
@@ -126,7 +199,7 @@
             </div>
         </section>
 
-        <section class="astuce">
+        <section id="astuce2" class="astuce">
             <h2>Astuce 2 : Adaptez Votre CV à Chaque Offre d'Emploi</h2>
             <img src="images/writing-resume-illustration-concept-man-260nw-1734818726.webp" width="300" alt="cv pro">
             <p>Un CV générique a peu de chances de se démarquer. Prenez le temps d'adapter votre document à chaque poste pour lequel vous postulez. Analysez l'offre d'emploi et identifiez les compétences ou expériences que le recruteur recherche. Ensuite, mettez-les en avant dans votre CV.</p>
@@ -140,7 +213,7 @@
             </div>
         </section>
 
-        <section class="astuce">
+        <section id="astuce3" class="astuce">
             <h2>Astuce 3 : Soignez Votre Accroche Personnelle</h2>
             <img src="images/img.jpg" width="500" alt="cv pro">
             <p>Une accroche personnelle bien rédigée peut captiver le recruteur dès les premières lignes. Située en haut de votre CV, cette section doit refléter vos objectifs professionnels et vos atouts majeurs.</p>
@@ -152,7 +225,7 @@
             "Professionnel du marketing digital avec 5 ans d'expérience dans la gestion de campagnes publicitaires performantes. Passionné par l'innovation, je suis motivé par les projets qui allient créativité et analyse stratégique."</p>
         </section>
 
-        <section class="astuce">
+        <section id="astuce4" class="astuce">
             <h2>Astuce 4 : Quantifiez Vos Réalisations</h2>
             <img src="images/equipe-commerciale-travaille-nouveau-plan-affaires-ordinateur-numerique-moderne_1423-56.avif" width="500" alt="cv pro">
             <p>Les recruteurs adorent les chiffres ! Ils permettent de mesurer concrètement votre impact dans vos précédentes expériences. Plutôt que de simplement énumérer vos responsabilités, mettez en avant vos résultats avec des données chiffrées.</p>
@@ -166,7 +239,7 @@
             Ce type de donnée rend votre CV bien plus convaincant et attire immédiatement l'attention.</p>
         </section>
 
-        <section class="astuce">
+        <section id="astuce5" class="astuce">
             <h2>Astuce 5 : Ajoutez une Section Compétences Clés</h2>
             <img src="images/compétences-clés.jpeg" width="500" alt="cv pro">
             <p>Les recruteurs n'ont souvent que quelques secondes à consacrer à chaque CV. Une section "Compétences clés" permet de leur donner un aperçu instantané de vos atouts principaux. Divisez cette section en deux parties :</p>
@@ -190,7 +263,20 @@
             <a href="#" id="download-btn">Télécharger le Guide Complet</a>
         </section>
     </main>
-
+    <footer>
+        <p>&copy; 2025 Blog CV. Tous droits réservés.</p>
+        <p>
+            <a href="#">Mentions légales</a> | 
+            <a href="#">Politique de confidentialité</a> | 
+            <a href="#">Contact</a>
+        </p>
+        <p>Suivez-nous sur les réseaux sociaux :</p>
+        <p>
+            <a href="https://www.facebook.com/profile.php?id=61561907696708" aria-label="Facebook">Facebook</a> | 
+            <a href="https://x.com/HiksonTaletant" aria-label="Twitter">Twitter</a> | 
+            <a href="https://www.linkedin.com/in/hikson-talerant-165867272/" aria-label="LinkedIn">LinkedIn</a>
+        </p>
+    </footer>
     <script>
         // Progress bar
         window.addEventListener('scroll', () => {
@@ -221,6 +307,21 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Menu button functionality
+        const menuButton = document.getElementById('menu-button');
+        const sideMenu = document.getElementById('side-menu');
+
+        menuButton.addEventListener('click', () => {
+            sideMenu.classList.toggle('open');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                sideMenu.classList.remove('open');
+            }
         });
     </script>
 </body>
