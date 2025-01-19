@@ -1,1 +1,193 @@
-création de modèle cv
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Téléchargement de Modèles de CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .cv-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .cv-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px;
+            width: 350px;
+            height: 530px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .cv-item:hover {
+            transform: translateY(-5px);
+        }
+        .cv-image {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .cv-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Affiche l'image entière sans la rogner */
+        }
+        .download-btn {
+            background-color: 0099FF;
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            margin: 0px 4px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #333;
+            font-size: 24px;
+        }
+        .share-link {
+            margin-top: 20px;
+        }
+        .share-link input {
+            width: 70%;
+            padding: 5px;
+        }
+        .share-link button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <h1>Modèles de CV Professionnels</h1>
+    <div class="cv-list" id="cvList"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Téléchargement en cours...</h2>
+            <p>Veuillez patienter <span id="countdown">5</span> secondes</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61561907696708" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/HiksonTaletant" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/hikson-talerant-165867272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/hikson_talerant?igsh=ZGFqdGc0eTQzc2I=" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="share-link">
+                <input type="text" id="shareLink" readonly>
+                <button onclick="copyShareLink()">Copier</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cvModels = [
+            { name: "CV Moderne", id: "classic", image: "images/Cv Hikwoulbo Talerant Operationel.jpg" },
+            { name: "CV Classique", id: "modern", image: "images/img1.jpeg" },
+            { name: "CV Créatif", id: "creative", image: "images/img2.jpeg" },
+            { name: "CV Minimaliste", id: "minimal", image: "images/img3.png" },
+            { name: "CV Technique", id: "tech", image: "images/img5.png" },
+            { name: "CV Exécutif", id: "executive", image: "images/img4.png" }
+        ];
+
+        const cvList = document.getElementById('cvList');
+        const popup = document.getElementById('popup');
+        const countdownElement = document.getElementById('countdown');
+        const shareLinkInput = document.getElementById('shareLink');
+
+        cvModels.forEach(model => {
+            const cvItem = document.createElement('div');
+            cvItem.className = 'cv-item';
+            
+            cvItem.innerHTML = `
+                <div class="cv-image">
+                    <img src="${model.image}" alt="${model.name}">
+                </div>
+                <h3>${model.name}</h3>
+                <a href="#" class="download-btn" onclick="startDownload('${model.id}', '${model.name}', '${model.image}'); return false;">Télécharger</a>
+            `;
+            cvList.appendChild(cvItem);
+        });
+
+        function startDownload(id, name, imageSrc) {
+            popup.style.display = 'flex';
+            shareLinkInput.value = `${window.location.href}?model=${id}`;
+            let countdown = 5;
+            
+            const timer = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    downloadCV(id, name, imageSrc);
+                    popup.style.display = 'none';
+                }
+            }, 1000);
+        }
+
+        function downloadCV(id, name, imageSrc) {
+            const link = document.createElement('a');
+            link.href = imageSrc;
+            link.download = `${id}_cv_template.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function copyShareLink() {
+            shareLinkInput.select();
+            document.execCommand('copy');
+            alert('Lien copié !');
+        }
+    </script>
+</body>
+</html>
